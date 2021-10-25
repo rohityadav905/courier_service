@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<% if current_user.present? && current_user.is_admin? %>
+<%# if current_user.present? && current_user.is_admin? %>
   <h1>List Parcels</h1>
 
   <br />
@@ -24,18 +24,20 @@
 
     <tbody>
       <% @parcels.each do |parcel| %>
-        <tr>
-          <td><%= parcel.weight %></td>
-          <td><%= parcel.status %></td>
-          <td><%= parcel.service_type.name %></td>
-          <td><%= parcel.payment_mode %></td>
-          <td><%= parcel.sender.name %></td>
-          <td><%= parcel.receiver.name %></td>
-          <td><%= link_to 'Show', parcel %></td>
-          <td><%= link_to 'Edit', edit_parcel_path(parcel) %></td>
-          <td><%= link_to 'Destroy', parcel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
+      	<% cache parcel do %>
+	        <tr>
+	          <td><%= parcel.weight %></td>
+	          <td><%= parcel.status %></td>
+	          <td><%= parcel.service_type.name %></td>
+	          <td><%= parcel.payment_mode %></td>
+	          <td><%= parcel.sender.name %></td>
+	          <td><%= parcel.receiver.name %></td>
+	          <td><%= link_to 'Show', parcel %></td>
+	          <td><%= link_to 'Edit', edit_parcel_path(parcel) %></td>
+	          <td><%= link_to 'Destroy', parcel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	        </tr>
+	      <% end %>
       <% end %>
     </tbody>
   </table>
-<% end %>
+<%# end %>

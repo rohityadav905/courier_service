@@ -19,19 +19,21 @@
 
   <tbody>
     <% @addresses.each do |address| %>
-      <tr>
-        <td><%= address.address_line_one %></td>
-        <td><%= address.address_line_two %></td>
-        <td><%= address.city %></td>
-        <td><%= address.state %></td>
-        <td><%= address.country %></td>
-        <td><%= address.pincode %></td>
-        <td><%= address.mobile_number %></td>
-        <td><%= address.user_id %></td>
-        <td><%= link_to 'Show', address %></td>
-        <td><%= link_to 'Edit', edit_address_path(address) %></td>
-        <td><%= link_to 'Destroy', address, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    	<% cache address do %>
+      	<tr>
+	        <td><%= address.address_line_one %></td>
+	        <td><%= address.address_line_two %></td>
+	        <td><%= address.city %></td>
+	        <td><%= address.state %></td>
+	        <td><%= address.country %></td>
+	        <td><%= address.pincode %></td>
+	        <td><%= address.mobile_number %></td>
+	        <td><%= address.user_id %></td>
+	        <td><%= link_to 'Show', address %></td>
+	        <td><%= link_to 'Edit', edit_address_path(address) %></td>
+	        <td><%= link_to 'Destroy', address, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      	</tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

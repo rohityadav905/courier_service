@@ -21,10 +21,12 @@
 
   <tbody>
     <% @parcels.each do |parcel| %>
-      <tr>
-        <td><%= parcel.id %></td>
-        <td><%= parcel.status %></td>
-      </tr>
+    	<% cache parcel do %>
+	      <tr>
+	        <td><%= parcel.id %></td>
+	        <td><%= parcel.status %></td>
+	      </tr>
+	    <% end %>
     <% end %>
   </tbody>
 </table>
